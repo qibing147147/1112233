@@ -168,6 +168,7 @@ class Game_env:
             done = True
             return self.state, 0, done
         #action_space = ['gem_weapon','gem_cloth','gem_head','gem_shoes'，'gem_yaodai','gem_necklect']
+        # 0-5 宝石
         if (action=='0' and self.state[5]<26):
             if(money >= self.gem_table[1][int(self.state[5]/2)]):
                 self.state[0]+=8
@@ -206,13 +207,66 @@ class Game_env:
                 self.state[2]+=8
                 self.state[-1]  -= self.gem_table[6][int(self.state[-4]/2)]
                 self.state[10]+=1
-         
+        
+        # 6-9 飞剑 风带 金甲 斗篷
         if action == '6' and self.state[11]<10:
-            if(money >= self.fabao_table[0][self.state[11]]:
+            if(money >= self.fabao_table[0][self.state[11]]):
                self.state[0] += (self.state[0] - 1000) * 0.02
-               self.state[-1] -= self.fabao_table[0][selft.state[11]
+               self.state[-1] -= self.fabao_table[0][self.state[11]]
                self.state[11] += 1
-         
+        
+        if action == '7' and self.state[12]<10:
+            if(money >= self.fabao_table[0][self.state[12]]):
+               self.state[0] += self.state[4] * 0.02
+               self.state[-1] -= self.fabao_table[0][self.state[12]]
+               self.state[12] += 1
+        
+        if action == '8' and self.state[13]<10:
+            if(money >= self.fabao_table[3][self.state[13]]):
+               self.state[0] += self.state[1] * 0.02
+               self.state[-1] -= self.fabao_table[3][self.state[13]]
+               self.state[13] += 1
+
+        if action == '9' and self.state[14]<10:
+            if(money >= self.fabao_table[3][self.state[14]]):
+               self.state[0] += self.state[2] * 0.02
+               self.state[-1] -= self.fabao_table[3][self.state[14]]
+               self.state[14] += 1
+        
+        # 10-13 攻 物 法 封
+
+        if action == '10' and self.state[15]<10:
+            if(money >= self.xiulian_table[0][self.state[15]]):
+               self.state[0] += (self.state[0] - 1000) * 0.02
+               self.state[-1] -= self.xiulian_table[0][self.state[15]]
+               self.state[15] += 1
+        
+        if action == '11' and self.state[16]<10:
+            if(money >= self.xiulian_table[1][self.state[16]]):
+               self.state[0] += self.state[2] * 0.02
+               self.state[-1] -= self.xiulian_table[1][self.state[16]]
+               self.state[16] += 1
+        
+        if action == '12' and self.state[17]<10:
+            if(money >= self.xiulian_table[1][self.state[17]]):
+               self.state[0] += self.state[2] * 0.02
+               self.state[-1] -= self.xiulian_table[1][self.state[17]]
+               self.state[17] += 1
+        
+        if action == '13' and self.state[18]<10:
+            if(money >= self.xiulian_table[1][self.state[18]]):
+               self.state[0] += (self.state[0] - 1000) * 0.005
+               self.state[-1] -= self.xiulian_table[1][self.state[18]]
+               self.state[18] += 1
+        
+        # 经脉
+
+        if action == '14' and self.state[19]<10:
+            if(money >= self.jingmai_table[self.state[19]]):
+               self.state[0] += (self.state[0] - 1000) * 0.01
+               self.state[-1] -= self.jingmai_table[self.state[19]]
+               self.state[19] += 1
+
                                                      
 
 
@@ -221,7 +275,7 @@ class Game_env:
         
         reward = 0
         done = False
-        if self.state[0]>=1860 and self.state[1]>=900 and self.state[2]>=940 and self.state[4]>= 850:
+        if self.state[0]>=3000 and self.state[1]>=1000 and self.state[2]>=1040 and self.state[4]>= 850:
             reward =1 + self.state[-1]/3000
             done = True
         else:

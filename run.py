@@ -8,18 +8,18 @@ import time
 
 
 MEMORY_SIZE = 3000
-ACTION_SPACE = 6
+ACTION_SPACE = 15
 
 sess = tf.Session()
 with tf.variable_scope('Natural_DQN'):
     natural_DQN = DoubleDQN(
-        n_actions=ACTION_SPACE, n_features=12, memory_size=MEMORY_SIZE,
+        n_actions=ACTION_SPACE, n_features=21, memory_size=MEMORY_SIZE,
         e_greedy_increment=0.001, double_q=False, sess=sess
     )
 
 with tf.variable_scope('Double_DQN'):
     double_DQN = DoubleDQN(
-        n_actions=ACTION_SPACE, n_features=12, memory_size=MEMORY_SIZE,
+        n_actions=ACTION_SPACE, n_features=21, memory_size=MEMORY_SIZE,
         e_greedy_increment=0.001, double_q=True, sess=sess, output_graph=True)
 
 sess.run(tf.global_variables_initializer())
@@ -35,7 +35,7 @@ def train(RL):
         step = 1
         while True:
            
-            arr4nor=np.array([2300,1200,1200,5000,1100,26,26,26,26,26,26,3000])
+            arr4nor=np.array([3000,1200,1200,5000,1100,26,26,26,26,26,26,10,10,10,10,20,20,20,20,10,3000])
 
             observation = np.array(env.state)
             # RL choose action based on observation
@@ -45,7 +45,7 @@ def train(RL):
             # RL take action and get next observation and reward
             observation_, reward, done = env.step(str(action))
 
-            arr4nor=np.array([2300,1200,1200,5000,1100,26,26,26,26,26,26,3000])
+            arr4nor=np.array([3000,1200,1200,5000,1100,26,26,26,26,26,26,10,10,10,10,20,20,20,20,10,3000])
 
 
             
