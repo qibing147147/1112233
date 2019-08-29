@@ -46,7 +46,16 @@ class Game_env:
         'gem_head',
         'gem_shoes',
         'gem_yaodai',
-        'gem_xianglian']
+        'gem_xianglian',
+        'fabao_feijian',
+        'fabao_fengdai',
+        'fabao_jinjia',
+        'fabao_doupeng',
+        'xiulian_gong',
+        'xiulian_wukang',
+        'xiulian_fakang',
+        'xiulian_fengkang',
+        'jingmai']
         self.n_actions = len(self.action_space)
         #gem_table是宝石各等级所需要消耗的金钱
         #光芒石
@@ -178,26 +187,33 @@ class Game_env:
                 self.state[-1]  -= self.gem_table[7][int(self.state[7]/2)]
                 self.state[7]+=1
                 
-        if action =='3' and self.state[-3]<26 :
-            if(money >= self.gem_table[8][int(self.state[-3]/2)]):
+        if action =='3' and self.state[8]<26 :
+            if(money >= self.gem_table[8][int(self.state[8]/2)]):
                 self.state[4]+=8
                 self.state[-1]  -= self.gem_table[8][int(self.state[-3]/2)]
-                self.state[-3]+=1
+                self.state[8]+=1
                 
         
-        if action =='4'  and self.state[-2]<26:
-            if(money >= self.gem_table[8][int(self.state[-2]/2)]):
+        if action =='4'  and self.state[9]<26:
+            if(money >= self.gem_table[8][int(self.state[9]/2)]):
                 self.state[4]+=8
                 self.state[-1]  -= self.gem_table[8][int(self.state[-2]/2)]
-                self.state[-2]+=1
+                self.state[9]+=1
                 
 
-        if action =='5'  and self.state[-4]<26:
-            if(money >= self.gem_table[6][int(self.state[-4]/2)]):
+        if action =='5'  and self.state[10]<26:
+            if(money >= self.gem_table[6][int(self.state[10]/2)]):
                 self.state[2]+=8
                 self.state[-1]  -= self.gem_table[6][int(self.state[-4]/2)]
-                self.state[-4]+=1
-                
+                self.state[10]+=1
+         
+        if action == '6' and self.state[11]<10:
+            if(money >= self.fabao_table[0][self.state[11]]:
+               self.state[0] += (self.state[0] - 1000) * 0.02
+               self.state[-1] -= self.fabao_table[0][selft.state[11]
+               self.state[11] += 1
+         
+                                                     
 
 
 
